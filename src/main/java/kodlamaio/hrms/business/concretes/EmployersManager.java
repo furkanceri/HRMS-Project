@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployersService;
 import kodlamaio.hrms.business.abstracts.UsersService;
-import kodlamaio.hrms.core.utilities.isEmailValid;
+import kodlamaio.hrms.core.adapters.abstracts.isEmailValid;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
