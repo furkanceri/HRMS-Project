@@ -1,8 +1,10 @@
-package kodlamaio.hrms.core.utilities;
+package kodlamaio.hrms.core.adapters.concretes;
 
 import java.util.regex.Pattern;
 
 import org.springframework.stereotype.Service;
+
+import kodlamaio.hrms.core.adapters.abstracts.isEmailValid;
 
 @Service
 public class isEmailValidAdapter implements isEmailValid {

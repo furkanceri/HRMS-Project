@@ -1,6 +1,8 @@
-package kodlamaio.hrms.core.utilities;
+package kodlamaio.hrms.core.adapters.concretes;
 
 import org.springframework.stereotype.Service;
+
+import kodlamaio.hrms.core.adapters.abstracts.FakeMernisService;
 
 @Service
 public class FakeMernisAdapter implements FakeMernisService {
