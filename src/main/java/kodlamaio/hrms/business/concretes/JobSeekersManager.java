@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import kodlamaio.hrms.business.abstracts.JobSeekersService;
 import kodlamaio.hrms.business.abstracts.UsersService;
 import kodlamaio.hrms.core.utilities.FakeMernisService;
+import kodlamaio.hrms.core.utilities.isEmailValid;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -22,14 +23,16 @@ public class JobSeekersManager implements JobSeekersService {
 	private JobSeekersDao jobSeekersDao;
 	private UsersService usersService;
 	private FakeMernisService fakeMernisService;
+	private isEmailValid isEmailValid;
 
 	@Autowired
 	public JobSeekersManager(JobSeekersDao jobSeekersDao, UsersService usersService,
-			FakeMernisService fakeMernisService) {
+			FakeMernisService fakeMernisService,isEmailValid isEmailValid) {
 		super();
 		this.jobSeekersDao = jobSeekersDao;
 		this.usersService = usersService;
 		this.fakeMernisService = fakeMernisService;
+		this.isEmailValid=isEmailValid;
 
 	}
 
@@ -47,12 +50,19 @@ public class JobSeekersManager implements JobSeekersService {
 		if (registerRules(jobSeekers) != null)
 			return registerRules(jobSeekers);
 
+		if (!isEmailValid.isEmailValidation(jobSeekers.getEmail())) {
+			return new ErrorResult("Please enter a valid email format");
+		}
+		if (!isEmailValid.isEmailValidationOnClick(jobSeekers.getEmail())) {
+			return new ErrorResult("Please confirm your email address from the activation link sent to your email address");
+		}
 		if (!fakeMernisService.validate(jobSeekers.getNationalityId(), jobSeekers.getFirstName(),
 				jobSeekers.getLastName(), jobSeekers.getBirthYear())) {
-			return new ErrorResult("Credentials could not be verified. Please enter valid credentials.");
+			return new ErrorResult("Credentials could not be verified. Please enter valid credentials");
 		}
+		else {
 		this.jobSeekersDao.save(jobSeekers);
-		return new SuccessResult("New job seekers added successfully");
+		return new SuccessResult("New job seeker added successfully");}
 	}
 
 	private Result registerRules(JobSeekers jobSeekers) {

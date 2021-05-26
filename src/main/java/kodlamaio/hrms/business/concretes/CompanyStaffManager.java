@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CompanyStaffService;
+import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.dataAccess.abstracts.CompanyStaffDao;
 import kodlamaio.hrms.entities.concretes.CompanyStaff;
 
@@ -24,11 +26,12 @@ public class CompanyStaffManager implements CompanyStaffService{
 		this.companyStaffDao = companyStaffDao;
 	}
 
-
 	@Override
-	public List<CompanyStaff> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public DataResult<List<CompanyStaff>> getAll() {
+		return new SuccessDataResult<List<CompanyStaff>>(this.companyStaffDao.findAll(), "Company personnel listed");
 	}
+
+
+	
 
 }

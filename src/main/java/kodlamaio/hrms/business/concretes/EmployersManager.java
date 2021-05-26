@@ -7,28 +7,28 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.EmployersService;
 import kodlamaio.hrms.business.abstracts.UsersService;
+import kodlamaio.hrms.core.utilities.isEmailValid;
 import kodlamaio.hrms.core.utilities.results.DataResult;
-import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployersDao;
 import kodlamaio.hrms.entities.concretes.Employers;
-import kodlamaio.hrms.entities.concretes.Users;
-import net.bytebuddy.asm.Advice.This;
 
 @Service
 public class EmployersManager implements EmployersService {
 
 	private EmployersDao employersDao;
 	private UsersService usersService;
+	private isEmailValid isEmailValid;
 
 	@Autowired
-	public EmployersManager(EmployersDao employersDao, UsersService usersService) {
+	public EmployersManager(EmployersDao employersDao, UsersService usersService,isEmailValid isEmailValid) {
 		super();
 		this.employersDao = employersDao;
 		this.usersService = usersService;
+		this.isEmailValid=isEmailValid;
 	}
 
 	@Override
@@ -45,8 +45,14 @@ public class EmployersManager implements EmployersService {
 		if (companyRegisterRules(employers) != null) {
 			return companyRegisterRules(employers);
 		}
+		if (!isEmailValid.isEmailValidation(employers.getEmail())) {
+			return new ErrorResult("Please enter a valid email format");
+		}
+		if (!isEmailValid.isEmailValidationOnClick(employers.getEmail())) {
+			return new ErrorResult("Please confirm your email address from the activation link sent to your email address");
+		}else {
 		this.employersDao.save(employers);
-		return new SuccessResult("New employers added successfully");
+		return new SuccessResult("New employers added successfully");}
 	}
 
 	private Result companyRegisterRules(Employers employers) {

@@ -24,7 +24,7 @@ public class FakeMernisAdapter implements FakeMernisService {
 			return false;
 		}
 		System.out.println("Credentials have been successfully verified");
-		return false;
+		return true;
 	}
 
 }
