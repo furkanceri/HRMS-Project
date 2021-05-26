@@ -15,10 +15,16 @@ import kodlamaio.hrms.entities.concretes.CompanyStaff;
 public class CompanyStaffManager implements CompanyStaffService{
 
 	
-	@Autowired
+	
 	private CompanyStaffDao companyStaffDao;
 	
-	
+	@Autowired
+	public CompanyStaffManager(CompanyStaffDao companyStaffDao) {
+		super();
+		this.companyStaffDao = companyStaffDao;
+	}
+
+
 	@Override
 	public List<CompanyStaff> getAll() {
 		// TODO Auto-generated method stub

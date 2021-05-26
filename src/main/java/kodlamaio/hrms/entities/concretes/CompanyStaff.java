@@ -5,21 +5,29 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Data
-@Table(name="company_staff")
-public class CompanyStaff {
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name="staff_users")
+@EqualsAndHashCode(callSuper = true)
+public class CompanyStaff extends Users{
 	
-	@Id
-	@GeneratedValue
-	@Column(name="company_staff_id")
-	private int companyStaffId;
+	//@Id
+	//@GeneratedValue
+	//@Column(name="company_staff_id")
+	//private int companyStaffId;
 	
 	@Column(name="first_name")
 	private String firstName;
@@ -27,12 +35,4 @@ public class CompanyStaff {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="starting_date_of_work")
-	private Date startingDateOfWork;
-	
-	@Column(name="department")
-	private String department;
-	
-	@Column(name="task")
-	private String task;
 }
