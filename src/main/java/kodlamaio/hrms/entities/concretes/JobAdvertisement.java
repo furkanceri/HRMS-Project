@@ -11,16 +11,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_postings")
-public class JobPosting {
+public class JobAdvertisement {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,26 +39,26 @@ public class JobPosting {
 	private double maxSalary;
 	
 	@Column(name = "number_of_open_position")
-	private int activePositionNumber;
+	private int openPosition;
 	
-	@Column(name = "last_apply_date")
-	private LocalDate applicationDeadline;
+	@Column(name = "last_apply_date", columnDefinition = "Date default CURRENT_DATE")
+	private LocalDate applicationDeadline=LocalDate.now();
 	
-	@Column(name = "isActive")
+	@Column(name = "is_active")
 	private boolean isActive;
 	
-	@Column(name = "posted_date")
-	private LocalDate declarationDate;
+	@Column(name = "posted_date", columnDefinition = "Date default CURRENT_DATE")
+	private LocalDate releaseDate=LocalDate.now();
 	
-	@ManyToOne()
-	@JoinColumn(name = "company_id")
-	private Employers employers;
-	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "job_id")
 	private Jobs jobs;
 	
-	@ManyToOne()
+	@ManyToOne
+	@JoinColumn(name = "company_id")
+	private Employers employers;
+	
+	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private Cities cities;
 }
