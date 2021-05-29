@@ -8,6 +8,7 @@ import kodlamaio.hrms.entities.concretes.JobSeekers;
 
 public interface JobSeekersService {
 
-	DataResult<List<JobSeekers>> getAll();
 	Result add(JobSeekers jobSeekers);
+	DataResult<List<JobSeekers>> getAll();
+	
 }

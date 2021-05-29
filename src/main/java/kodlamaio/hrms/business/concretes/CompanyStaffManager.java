@@ -28,8 +28,10 @@ public class CompanyStaffManager implements CompanyStaffService{
 
 	@Override
 	public DataResult<List<CompanyStaff>> getAll() {
-		return new SuccessDataResult<List<CompanyStaff>>(this.companyStaffDao.findAll(), "Company personnel listed");
+		return new SuccessDataResult<List<CompanyStaff>>(companyStaffDao.findAll()+" Tüm şirket çalışanları listelendi");
 	}
+
+	
 
 
 	
