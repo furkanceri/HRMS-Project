@@ -27,37 +27,22 @@ public class JobsManager implements JobsService{
 		this.jobsDao = jobsDao;
 	}
 
-
-	@Override
-	public DataResult<List<Jobs>> getAll() {		
-		return new SuccessDataResult<List<Jobs>>(this.jobsDao.findAll(), "Jobs listed");
-		
-		//return new ErrorDataResult<List<Jobs>>("Jobs could not be listed");
-	}
-
-
 	@Override
 	public Result add(Jobs jobs) {
-		if(jobsRegisterRules(jobs)!= null) return jobsRegisterRules(jobs);
+		if (this.jobsDao.findByJobTitle(jobs.getJobTitle())!=null) {
+			return new ErrorResult("Bu meslek daha önce sisteme eklenmiştir");
+		}
 		this.jobsDao.save(jobs);
-		return new SuccessResult("New job added");
+		return new SuccessResult("Yeni meslek sisteme başarıyla eklendi");
 	}
 
+	@Override
+	public DataResult<List<Jobs>> getAll() {
+		return new SuccessDataResult<List<Jobs>>(this.jobsDao.findAll(), "Sistemdeki tüm meslekler listelendi");
+	}
+
+
 	
-	private Result jobsRegisterRules(Jobs jobs) {
-		if(isAllFieldsFilled(jobs)!=null) return isAllFieldsFilled(jobs);
-		if(jobsNameControl(jobs)!=null) return jobsNameControl(jobs);
-		return null;
-	}
-	private Result isAllFieldsFilled(Jobs jobs) {
-		if(jobs.getJobs()==null) return new ErrorResult("All fields must be filled");
-		return null;
-	}
-	private Result jobsNameControl(Jobs jobs) {
-		if(jobsDao.findByJobs(jobs.getJobs())!=null)
-			return new ErrorResult("This job name is already registered");
-		return null;
-	}
 	
 
 }

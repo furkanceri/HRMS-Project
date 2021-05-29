@@ -1,5 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,14 +21,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="candidate_users")
-@PrimaryKeyJoinColumn(name = "id")
+@Table(name="candidates")
+@PrimaryKeyJoinColumn(name = "user_id")
 public class JobSeekers extends Users{
 	
 	
 	//@Id
 	//@GeneratedValue()
-	//@Column(name="job_seekers_id")
+	//@Column(name="user_id")
 	//private int jobSeekersId;
 	
 	@Column(name="first_name")
@@ -34,18 +37,21 @@ public class JobSeekers extends Users{
 	@Column(name="last_name")
 	private String lastName;
 	
-	@Column(name="date_of_birth")
+	@Column(name="birth_year")
 	private String birthYear;
 	
-	@Column(name="identity_number")
+	@Column(name="nationalty_id")
 	private String nationalityId;
 	
-	public JobSeekers (int id, String email, String password, String firstName, String lastName, String birthYear, String nationalityId) {
-		super(id,email,password);
+	public JobSeekers(int id, String email, String password, String firstName, String lastName, String nationalityId, String birthYear) {
+		super(id, email, password);
+		this.birthYear=birthYear;
 		this.firstName=firstName;
 		this.lastName=lastName;
-		this.birthYear=birthYear;
 		this.nationalityId=nationalityId;
 	}
+	
+	
+	
 	
 }

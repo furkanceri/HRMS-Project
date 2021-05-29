@@ -20,8 +20,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="staff_users")
-@EqualsAndHashCode(callSuper = true)
+@Table(name="employees")
+@PrimaryKeyJoinColumn(name = "user_id")
 public class CompanyStaff extends Users{
 	
 	//@Id
