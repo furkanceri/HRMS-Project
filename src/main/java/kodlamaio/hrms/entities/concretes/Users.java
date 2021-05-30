@@ -1,8 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
 
-import java.sql.Date;
-import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,5 +33,6 @@ public class Users {
 	
 	@Column(name="password")
 	private String password;
+	
 	
 }

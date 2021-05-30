@@ -1,6 +1,8 @@
 package kodlamaio.hrms.entities.concretes;
 
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

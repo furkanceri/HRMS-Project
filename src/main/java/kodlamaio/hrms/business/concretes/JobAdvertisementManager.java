@@ -29,9 +29,11 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 				jobAdvertisements.getApplicationDeadline()==null && jobAdvertisements.getCities()==null) {
 			return new ErrorResult("Alanlar boş bırakılamaz");
 		}
+		
 		this.jobAdvertisementDao.save(jobAdvertisements);
 		return new SuccessResult("İş ilanı eklendi");
 	}
+	
 
 	@Override
 	public Result delete(int id) {
@@ -56,7 +58,7 @@ public class JobAdvertisementManager implements JobAdvertisementService{
 	
 	@Override
 	public DataResult<List<JobAdvertisement>> getByisActiveTrueOrderByReleaseDate() {
-		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActiveTrueOrderByReleaseDate(), "");
+		return new SuccessDataResult<List<JobAdvertisement>>(jobAdvertisementDao.getByisActiveTrueOrderByReleaseDate(), "İlan sırasına göre listelendi");
 	}
 
 	@Override
