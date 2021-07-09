@@ -9,3 +9,4 @@
 - Lombok
 
 ## Database Diagram
+[resim]: https://www.hizliresim.com/hpjk5fa
