@@ -9,4 +9,6 @@
 - Lombok
 
 ## Database Diagram
-[resim]: https://www.hizliresim.com/hpjk5fa
+
+![hrmsdb](https://user-images.githubusercontent.com/63816274/125101144-927f9e80-e0e2-11eb-9998-5208dee83c95.png)
+
