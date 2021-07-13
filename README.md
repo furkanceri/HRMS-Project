@@ -7,6 +7,7 @@
 - Spring Data JPA
 - PostgreSQL Driver
 - Lombok
+- Swagger UI
 
 ## Database Diagram
 
